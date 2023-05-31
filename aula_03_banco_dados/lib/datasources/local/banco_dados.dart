@@ -1,4 +1,5 @@
 import 'package:aula_03_banco_dados/datasources/local/categoria_helper.dart';
+import 'package:aula_03_banco_dados/datasources/local/produto_helper.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -19,7 +20,7 @@ class BancoDados {
 
   void _criarTabelas(Database database, int version) async {
     await database.execute(CategoriaHelper.sqlCreate);
-    await database.execute('TbProduto');
+    await database.execute(ProdutoHelper.sqlCreate);
   }
 
   void close() {
