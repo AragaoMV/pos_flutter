@@ -35,7 +35,7 @@ class CategoriaHelper {
   }
 
   Future<List<Categoria>> getTodos() async {
-    await Future.delayed(Duration(seconds: 4));
+    await Future.delayed(Duration(seconds: 1));
     Database db = await BancoDados().db;
 
     var listaDados = await db.query(Categoria.tabela);

@@ -1,5 +1,7 @@
 import 'package:aula_03_banco_dados/blocs/lista_categoria_bloc.dart';
 import 'package:aula_03_banco_dados/models/categoria.dart';
+import 'package:aula_03_banco_dados/ui/pages/cad_categoria_page.dart';
+import 'package:aula_03_banco_dados/ui/widgets/botao_quadrado.dart';
 import 'package:aula_03_banco_dados/ui/widgets/circulo_espera.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Cardápio'), centerTitle: true),
       floatingActionButton: FloatingActionButton(
-        onPressed: () { },
+        onPressed: _abrirCadastro,
         child: const Icon(Icons.add),
       ),
       backgroundColor: const Color(0xFFEEEEEE),
@@ -53,11 +55,26 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _itemLista(Categoria categoria) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Center(child: Text(categoria.nome)),
+    return GestureDetector(
+      onTap: _abrirProdutos,
+      onLongPress: () { _abrirCadastro(categoria: categoria); },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Center(child: Text(categoria.nome)),
+        ),
       ),
     );
+  }
+
+  void _abrirCadastro({Categoria? categoria}) async {
+    await Navigator.push(context, MaterialPageRoute(
+        builder: (context) => CadCategoriaPage(categoria: categoria,)));
+
+    setState(() { });
+  }
+
+  void _abrirProdutos() {
+
   }
 }
