@@ -1,4 +1,4 @@
-import 'package:aula_03_banco_dados/ui/widgets/botao_quadrado.dart';
+import 'package:aula_03_banco_dados/ui/widgets/botao_texto.dart';
 import 'package:aula_03_banco_dados/ui/widgets/mensagem_popup.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class MensagemAlerta {
   }) {
     MensagemPopup().show(context: context, titulo: titulo, texto: texto,
       botoes: [
-        BotaoQuadrado(titulo: 'OK', tamanho: 50, clique: (){ Navigator.pop(context); })
+        BotaoTexto(titulo: 'OK', clique: (){ Navigator.pop(context); })
       ]
     );
   }

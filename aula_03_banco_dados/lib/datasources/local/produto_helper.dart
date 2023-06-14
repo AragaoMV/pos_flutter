@@ -40,6 +40,8 @@ class ProdutoHelper {
   }
 
   Future<List<Produto>> getTodosPorCategoria(int codCategoria) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
     var categoria = await CategoriaHelper().getByCodigo(codCategoria);
 
     if (categoria != null) {

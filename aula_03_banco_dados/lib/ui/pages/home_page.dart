@@ -1,8 +1,10 @@
 import 'package:aula_03_banco_dados/blocs/lista_categoria_bloc.dart';
 import 'package:aula_03_banco_dados/models/categoria.dart';
 import 'package:aula_03_banco_dados/ui/pages/cad_categoria_page.dart';
-import 'package:aula_03_banco_dados/ui/widgets/botao_quadrado.dart';
+import 'package:aula_03_banco_dados/ui/pages/produtos_page.dart';
 import 'package:aula_03_banco_dados/ui/widgets/circulo_espera.dart';
+import 'package:aula_03_banco_dados/ui/widgets/item_dismissible.dart';
+import 'package:aula_03_banco_dados/ui/widgets/item_lista.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,21 +51,37 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(8),
       itemCount: lista.length,
       itemBuilder: (context, index) {
-        return _itemLista(lista[index]);
+        return ItemDismissible(
+          filho: _itemLista(lista[index]),
+          dados: [
+            DadosDismissible(
+              titulo: 'Editar Categoria',
+              evento: () { _abrirCadastro(categoria: lista[index]); },
+              corFundo: Colors.green.shade200,
+              alinhamento: Alignment.centerLeft,
+              deveConfirmar: false,
+              direction: DismissDirection.startToEnd
+            ),
+            DadosDismissible(
+              titulo: 'Excluir Categoria',
+              evento: () { _bloc.excluir(lista[index]); },
+              corFundo: Colors.red.shade200,
+              alinhamento: Alignment.centerRight,
+              deveConfirmar: true,
+              txtConfirmar: 'Deseja excluir essa categoria?',
+              direction: DismissDirection.endToStart
+            ),
+          ],
+        );
       }
     );
   }
 
   Widget _itemLista(Categoria categoria) {
-    return GestureDetector(
-      onTap: _abrirProdutos,
-      onLongPress: () { _abrirCadastro(categoria: categoria); },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Center(child: Text(categoria.nome)),
-        ),
-      ),
+    return ItemLista(
+      filho: Center(child: Text(categoria.nome)),
+      clique: () { _abrirProdutos(categoria); },
+      cliqueLongo: () { _abrirCadastro(categoria: categoria); },
     );
   }
 
@@ -74,7 +92,8 @@ class _HomePageState extends State<HomePage> {
     setState(() { });
   }
 
-  void _abrirProdutos() {
-
+  void _abrirProdutos(Categoria categoria) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => ProdutosPage(categoria)));
   }
 }

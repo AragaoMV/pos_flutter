@@ -1,6 +1,7 @@
 import 'package:aula_03_banco_dados/datasources/local/categoria_helper.dart';
 import 'package:aula_03_banco_dados/models/categoria.dart';
 import 'package:aula_03_banco_dados/ui/widgets/botao_quadrado.dart';
+import 'package:aula_03_banco_dados/ui/widgets/botao_texto.dart';
 import 'package:aula_03_banco_dados/ui/widgets/mensagem_alerta.dart';
 import 'package:aula_03_banco_dados/ui/widgets/mensagem_popup.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class CadCategoriaBloc {
       titulo: 'Atenção',
       texto: 'Deseja excluir essa categoria?',
       botoes: [
-        BotaoQuadrado(titulo: 'Sim', cor: Colors.red.shade700, tamanho: 50, clique: _confirmarExclusao),
+        BotaoTexto(titulo: 'Sim', cor: Colors.red, clique: _confirmarExclusao),
         BotaoQuadrado(titulo: 'Não', tamanho: 50, clique: () { Navigator.pop(context); }),
       ]
     );

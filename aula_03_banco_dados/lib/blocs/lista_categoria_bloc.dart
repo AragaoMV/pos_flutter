@@ -7,4 +7,8 @@ class ListaCategoriaBloc {
   Future<List<Categoria>> getTodos() {
     return _helper.getTodos();
   }
+
+  void excluir(Categoria categoria) {
+    _helper.excluir(categoria.codigo ?? 0);
+  }
 }
