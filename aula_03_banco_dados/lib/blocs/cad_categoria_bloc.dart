@@ -14,10 +14,12 @@ class CadCategoriaBloc {
   final Categoria? categoria;
 
   CadCategoriaBloc(this.context, this.categoria) {
-    if (categoria != null) {
+    if (emEdicao) {
       nomeController.text = categoria!.nome;
     }
   }
+
+  bool get emEdicao => categoria != null;
 
   void salvar() {
     if (nomeController.text.trim().isEmpty) {
@@ -28,12 +30,12 @@ class CadCategoriaBloc {
 
     final cat = Categoria(nome: nomeController.text);
 
-    if (categoria == null) {
-      _helper.inserir(cat);
-    }
-    else {
+    if (emEdicao) {
       cat.codigo = categoria!.codigo;
       _helper.alterar(cat);
+    }
+    else {
+      _helper.inserir(cat);
     }
 
     //fechar a tela de cadastro de categorias
@@ -53,7 +55,7 @@ class CadCategoriaBloc {
   }
 
   void _confirmarExclusao() {
-    if (categoria != null) {
+    if (emEdicao) {
       _helper.excluir(categoria!.codigo ?? 0);
 
       Navigator.pop(context); //fechar a mensagem de alerta aberta

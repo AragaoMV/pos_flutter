@@ -19,7 +19,7 @@ class _CadCategoriaPageState extends State<CadCategoriaPage> {
     final bloc = CadCategoriaBloc(context, widget.categoria);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Cadastro de Categorias'), centerTitle: true),
+      appBar: AppBar(title: const Text('Cadastro de Categorias')),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -41,7 +41,7 @@ class _CadCategoriaPageState extends State<CadCategoriaPage> {
   }
 
   Widget _criarBotaoExcluir(CadCategoriaBloc bloc) {
-    if (widget.categoria != null) {
+    if (bloc.emEdicao) {
       return BotaoQuadrado(
         clique: bloc.excluir,
         titulo: 'Excluir',

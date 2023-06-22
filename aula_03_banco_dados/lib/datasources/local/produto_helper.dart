@@ -29,7 +29,7 @@ class ProdutoHelper {
       Produto.tabela,
       produto.toMap(),
       where: '${Produto.campoCodigo} = ? AND ${Produto.campoCategoria} = ?',
-      whereArgs: [ produto.codigo, produto.categoria ]
+      whereArgs: [ produto.codigo, produto.categoria.codigo ]
     );
   }
 

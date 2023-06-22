@@ -6,6 +6,7 @@ class CampoTexto extends StatelessWidget {
   final TextInputType? teclado;
   final double margemVertical;
   final double? margemHorizontal;
+  final String? prefixo;
 
   const CampoTexto({
     required this.controller,
@@ -13,6 +14,7 @@ class CampoTexto extends StatelessWidget {
     this.teclado = TextInputType.name,
     this.margemVertical = 16,
     this.margemHorizontal,
+    this.prefixo,
     super.key
   });
 
@@ -25,7 +27,7 @@ class CampoTexto extends StatelessWidget {
         keyboardType: teclado,
         decoration: InputDecoration(
           labelText: texto,
-          border: const OutlineInputBorder(),
+          prefixText: prefixo,
         ),
       ),
     );

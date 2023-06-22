@@ -34,7 +34,7 @@ class Produto {
       campoCodigo: codigo,
       campoNome: nome,
       campoPreco: preco,
-      campoCategoria: categoria
+      campoCategoria: categoria.codigo
     };
   }
 }

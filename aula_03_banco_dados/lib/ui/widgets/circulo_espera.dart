@@ -5,13 +5,13 @@ class CirculoEspera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircularProgressIndicator(strokeWidth: 8),
-          SizedBox(height: 8,),
-          Text('Carregando...'),
+          CircularProgressIndicator(strokeWidth: 8, color: Theme.of(context).primaryColor),
+          const SizedBox(height: 8,),
+          const Text('Carregando...'),
         ],
       ),
     );

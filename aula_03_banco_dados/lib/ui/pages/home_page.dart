@@ -20,10 +20,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cardápio'), centerTitle: true),
+      appBar: AppBar(title: const Text('Cardápio')),
       floatingActionButton: FloatingActionButton(
         onPressed: _abrirCadastro,
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add)
       ),
       backgroundColor: const Color(0xFFEEEEEE),
       body: FutureBuilder(
@@ -47,33 +47,40 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _criarLista(List<Categoria> lista) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(8),
-      itemCount: lista.length,
-      itemBuilder: (context, index) {
-        return ItemDismissible(
-          filho: _itemLista(lista[index]),
-          dados: [
-            DadosDismissible(
-              titulo: 'Editar Categoria',
-              evento: () { _abrirCadastro(categoria: lista[index]); },
-              corFundo: Colors.green.shade200,
-              alinhamento: Alignment.centerLeft,
-              deveConfirmar: false,
-              direction: DismissDirection.startToEnd
-            ),
-            DadosDismissible(
-              titulo: 'Excluir Categoria',
-              evento: () { _bloc.excluir(lista[index]); },
-              corFundo: Colors.red.shade200,
-              alinhamento: Alignment.centerRight,
-              deveConfirmar: true,
-              txtConfirmar: 'Deseja excluir essa categoria?',
-              direction: DismissDirection.endToStart
-            ),
-          ],
-        );
-      }
+    return Column(
+      children: [
+        Image.asset('images/logo.png'),
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: lista.length,
+            itemBuilder: (context, index) {
+              return ItemDismissible(
+                filho: _itemLista(lista[index]),
+                dados: [
+                  DadosDismissible(
+                      titulo: 'Editar Categoria',
+                      evento: () { _abrirCadastro(categoria: lista[index]); },
+                      corFundo: Colors.green.shade200,
+                      alinhamento: Alignment.centerLeft,
+                      deveConfirmar: false,
+                      direction: DismissDirection.startToEnd
+                  ),
+                  DadosDismissible(
+                      titulo: 'Excluir Categoria',
+                      evento: () { _bloc.excluir(lista[index]); },
+                      corFundo: Colors.red.shade200,
+                      alinhamento: Alignment.centerRight,
+                      deveConfirmar: true,
+                      txtConfirmar: 'Deseja excluir essa categoria?',
+                      direction: DismissDirection.endToStart
+                  ),
+                ],
+              );
+            }
+          ),
+        ),
+      ],
     );
   }
 
